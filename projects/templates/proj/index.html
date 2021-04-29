@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>BCC|Yamete</title>
+</head>
+<body style="background-color:#000000;color:#ffffff;font-family:'Source Code Pro', monospace;">
+		<a href="#" style="text-decoration:none;color:#ffffff;"><h3 style="padding:2px;">Yamete <span style="color:#000000;width:20px;height:20px;background-color:#FF9600;">Projects</span></h3></a>
+	<a href="maintenance/" style="text-decoration:none;"><h6 style="float:right;padding:5px;background-color:#FF9600;color:#000000;">Subscribe Premium</h6></a>
+	<hr style="color:#ffffff">
+{% if videos_list %}
+{% for videos in videos_list %}
+<div class="container" style="width:320px;height:220px;padding:2px;text-align:center;">
+				<div class='card' style='border-style:groove;border-color:#ffffff;width:320px;height:210px;background-color:transparent;padding:2px;'><a href="/static{{videos.photo.url}}"><img src="/static{{videos.photo.url}}" style="width:180px;height:130px;"></a><p>{{videos.title}}</p>
+					{% if videos.season %}
+					<a href="{% url 'projects:detail' videos.id %}">
+				<button type="button" class="btn btn-warning" style="padding:2px;">Season-{{videos.season}}</button>
+			</a>
+			{% else %}
+			<a href="{% url 'projects:detail' videos.id %}">
+				<button type="button" class="btn btn-warning" style="padding:2px;">WATCH</button>
+			</a>
+			{% endif %}
+		</div>
+			</div>
+
+{% endfor %}
+
+		<hr style="color:#ffffff">
+
+{% else %}
+<p>No videos are available.</p>
+{% endif %}
+
+<script>
+	$(document).ready(function(){
+		$("h6").mouseover(function(){
+			$("h6").css("background-color", "#68FF00");
+		});
+		$("h6").mouseout(function(){
+			$("h6").css("background-color", "#FF9600");
+		});
+		$("h3").mouseover(function(){
+			$("h3").css("color", "#68FF00");
+		});
+		$("h3").mouseout(function(){
+			$("h3").css("color", "#ffffff");
+		});
+		$("span").mouseover(function(){
+			$("span").css("background-color", "#68FF00");
+		});
+		$("span").mouseout(function(){
+			$("span").css("background-color", "#FF9600");
+		});
+	});
+
+</script>
+</body>
+</html>
